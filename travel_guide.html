@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>杭州旅行指南</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #2563eb;
+      --primary-soft: #dbeafe;
+      --accent: #16a34a;
+      --warn: #f59e0b;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 280px);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .hero {
+      padding: 34px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      color: var(--muted);
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+      margin-top: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .card-body { padding: 16px; }
+    .cover {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: #eef2f7;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 4px 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #374151;
+      font-size: 12px;
+      margin: 2px 4px 2px 0;
+    }
+
+    .tag.primary { background: var(--primary-soft); color: var(--primary); }
+    .tag.green { background: #dcfce7; color: #15803d; }
+    .tag.warn { background: #fef3c7; color: #b45309; }
+
+    .list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .row {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .route {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+
+    .day {
+      border-left: 4px solid var(--primary);
+      padding: 2px 0 2px 16px;
+    }
+
+    .time-block {
+      margin-top: 8px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #f8fafc;
+    }
+
+    .button {
+      display: inline-flex;
+      text-decoration: none;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    details {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .empty {
+      color: var(--muted);
+      padding: 18px;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      background: #fafafa;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .section, .hero { box-shadow: none; }
+      .button { color: var(--primary); background: transparent; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    
+<section class="hero">
+  <div class="eyebrow">AI Travel Guide</div>
+  <h1>杭州旅行指南</h1>
+  <p class="subtitle">2026-06-01 至 2026-06-02 · 2 天游 · 2 人出行</p>
+</section>
+
+<section class="section">
+  <h2>需求概览</h2>
+  <div class="grid">
+    <div class="row"><strong>出发地</strong><div class="meta">上海</div></div>
+    <div class="row"><strong>目的地</strong><div class="meta">杭州</div></div>
+    <div class="row"><strong>预算</strong><div class="meta">3000.0</div></div>
+    <div class="row"><strong>偏好</strong><div class="meta">西湖、美食</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>天气预报</h2>
+  <div class="grid">
+<article class="row">
+  <h3>2026-06-01</h3>
+  <span class="tag primary">多云 / 多云</span>
+  <span class="tag green">19~30°C</span>
+</article>
+
+<article class="row">
+  <h3>2026-06-02</h3>
+  <span class="tag primary">多云 / 多云</span>
+  <span class="tag green">21~30°C</span>
+</article>
+</div>
+  <p class="meta">更新时间：2026-05-25T08:00:00+08:00</p>
+</section>
+
+<section class="section">
+  <h2>景点推荐</h2>
+  <div class="grid">
+<article class="card">
+  <img class="cover" src="https://img.alicdn.com/imgextra/i1/6000000007744/O1CN01wpyBDF274nqr0ykTm_!!6000000007744-0-fliggyimage.jpg" alt="西湖风景名胜区" loading="lazy" />
+  <div class="card-body">
+    <h3>西湖风景名胜区</h3>
+    <span class="tag primary">免费</span>
+    <p class="meta">属于山湖田园类景点；与西湖偏好直接相关；免费开放，适合作为轻松游览或散步安排。</p>
+    <p>西湖古称“钱塘湖”，又名“西子湖”，古代诗人苏轼就对它评价道：“欲把西湖比西子，淡妆浓抹总相宜。”西湖形态为近于等轴的多边形，湖面被孤山及苏堤、白堤两条人工堤分割为5个子湖区，子湖区间由桥孔连通，各部分的湖水不能充分掺混，造成各湖区水质差异...</p>
+    <details><summary>查看完整简介</summary><p>西湖古称“钱塘湖”，又名“西子湖”，古代诗人苏轼就对它评价道：“欲把西湖比西子，淡妆浓抹总相宜。”西湖形态为近于等轴的多边形，湖面被孤山及苏堤、白堤两条人工堤分割为5个子湖区，子湖区间由桥孔连通，各部分的湖水不能充分掺混，造成各湖区水质差异，大部分径流补给先进入西侧3个子湖区，再进入外西湖；湖水总面积5.593平方公里;，总容积1．10亿立方米，平均水深1．97 米；西湖底质是一种有机质含量特别高的湖沼相沉积，属于粉砂质粘土或粉砂质亚粘土，最上层皆为藻骸腐泥层（黑色有机质粘土），中层泥炭层或沼泽土，最下层为基底粉砂层；入湖河流部是短小的溪涧，主要补水河流为金沙涧、龙泓涧和长桥溪泄流。</p></details>
+    <p class="meta">浙江省杭州市西湖区龙井路1号</p>
+  </div>
+</article>
+
+<article class="card">
+  <img class="cover" src="https://img.alicdn.com/tfscom/TB1xRz01br1gK0jSZFDSuv9yVXa" alt="雷峰塔" loading="lazy" />
+  <div class="card-body">
+    <h3>雷峰塔</h3>
+    <span class="tag primary">收费，价格待确认</span>
+    <p class="meta">属于历史古迹类景点；与西湖偏好直接相关；属于收费景点但价格待确认，适合在预算预留后安排。</p>
+    <p>雷峰塔又名“黄妃塔”，位于西湖南岸夕照山的雷峰上。很多人的“雷峰塔情结”源于白娘子传说，尽管旧塔在1924年就倒掉了，如今这座是在原塔基上新修的，里面有电梯和空调，但并不妨碍你来此寻访白娘子的踪迹。雷峰塔本身是整个景区最大的看点，新修的雷峰...</p>
+    <details><summary>查看完整简介</summary><p>雷峰塔又名“黄妃塔”，位于西湖南岸夕照山的雷峰上。很多人的“雷峰塔情结”源于白娘子传说，尽管旧塔在1924年就倒掉了，如今这座是在原塔基上新修的，里面有电梯和空调，但并不妨碍你来此寻访白娘子的踪迹。雷峰塔本身是整个景区最大的看点，新修的雷峰塔更像一个博物馆，从底座往上共有5层。检票后先乘坐电梯到塔基遗址，这里可以看到被玻璃围起来的旧塔的残破底座，里面满地都是零钱，也算是雷峰塔一景。这一层还有一些地宫出土的文物展，以一座阿育王塔最为精美。再往上，来到塔的底层，这一层展出的是大型东阳木雕壁画《白蛇传》，非常细致。从这里继续往上才开始正式登塔，里面有步行的楼梯，也有手扶电梯，大多数时候都需要排队。</p></details>
+    <p class="meta">浙江省杭州市西湖区南山路15号</p>
+  </div>
+</article>
+
+<article class="card">
+  <img class="cover" src="https://img.alicdn.com/imgextra/i4/6000000000183/O1CN01EPq6nL1DDrIVRjduS_!!6000000000183-2-fliggyimage.png" alt="西湖游船" loading="lazy" />
+  <div class="card-body">
+    <h3>西湖游船</h3>
+    <span class="tag primary">约 69.0 元</span>
+    <p class="meta">属于城市观光类景点；与西湖偏好直接相关；已有明确票价约69.0元，便于提前控制预算。</p>
+    <p>上岛游船票（可上三潭印月岛） 成人票</p>
+    
+    <p class="meta">浙江省杭州市西湖区西湖三潭印月</p>
+  </div>
+</article>
+
+<article class="card">
+  <img class="cover" src="https://img.alicdn.com/imgextra/i1/6000000008038/O1CN01zspKaU29FSIoZ2CQ8_!!6000000008038-2-fliggyimage.png" alt="岳王庙" loading="lazy" />
+  <div class="card-body">
+    <h3>岳王庙</h3>
+    <span class="tag primary">收费，价格待确认</span>
+    <p class="meta">属于人文古迹类景点；与西湖偏好直接相关；属于收费景点但价格待确认，适合在预算预留后安排。</p>
+    <p>杭州岳王庙位于西湖西北角，北山路西段北侧。 岳王庙是历代纪念民族英雄岳飞的场所。岳王庙始建于南宋嘉定十四年（1221年），明景泰年间改称“忠烈庙”，经历了元、明、清、民国时兴时废， 代代相传一直何存到现在。 南北各有一条碑廊，北面碑廊陈列的...</p>
+    <details><summary>查看完整简介</summary><p>杭州岳王庙位于西湖西北角，北山路西段北侧。 岳王庙是历代纪念民族英雄岳飞的场所。岳王庙始建于南宋嘉定十四年（1221年），明景泰年间改称“忠烈庙”，经历了元、明、清、民国时兴时废， 代代相传一直何存到现在。 南北各有一条碑廊，北面碑廊陈列的是岳飞的诗词、奏札等手迹，南面是历代修庙的记录以及历代名人凭吊岳飞的诗词。庭园中间有一石桥名精忠桥；过精忠桥便是墓阙，造型古朴，是1978年重修时按南宋的建筑风格造的。墓阙边上有一口井名忠泉。进墓阙重门就是岳飞墓园，墓道两侧有石马石虎石羊各一对，石俑三对正中便是岳飞墓，墓碑上刻着“宋岳鄂王墓”，左边是岳云墓，墓碑上刻着“宋继忠侯岳云墓”，两墓保持宋代的式样。墓前一对望柱上刻有一副对联：“正邪自古同冰炭，毁誉于今判伪真”。墓阙后面两侧分列秦桧等4人的铸铁跪像，供人唾骂，遗臭万年。墓阙后重门旁有对联一副：“青山有幸埋忠骨，白铁无辜铸奸臣”。墓园一侧，另有一组庭园，现已辟成岳飞纪念馆，供游人瞻仰。</p></details>
+    <p class="meta">浙江省杭州市西湖区西湖街道北山街80号</p>
+  </div>
+</article>
+</div>
+</section>
+
+<section class="section">
+  <h2>推荐交通方案</h2>
+  <div class="two-col">
+<article class="row">
+  <h3>飞机</h3>
+  
+<div class="route">
+  <strong>去程</strong>：浦东国际机场T1 → 萧山国际机场T3 / MU6549 / 270.0 元<br />
+  出发：2026-06-01 23:30 ｜ 到达：2026-06-02 00:35
+  <br /><a class="button" href="https://a.feizhu.com/2ne1mk" target="_blank" rel="noopener noreferrer">订票链接</a>
+</div>
+
+  
+<div class="route">
+  <strong>返程</strong>：萧山国际机场T3 → 浦东国际机场T1 / MU6550 / 270.0 元<br />
+  出发：2026-06-02 06:20 ｜ 到达：2026-06-02 08:00
+  <br /><a class="button" href="https://a.feizhu.com/2upKSN" target="_blank" rel="noopener noreferrer">订票链接</a>
+</div>
+
+  <div class="route">预计交通费用：540.0 元/人</div>
+  <ul><li>飞机方案未将提前到机场、安检和行李时间计入行程耗时，请额外预留时间。</li></ul>
+</article>
+
+<article class="row">
+  <h3>高铁/动车</h3>
+  
+<div class="route">
+  <strong>去程</strong>：上海 → 杭州 / D11 / 32.0 元<br />
+  出发：2026-06-01 09:51 ｜ 到达：2026-06-01 11:20
+  
+</div>
+
+  
+<div class="route">
+  <strong>返程</strong>：杭州 → 上海 / D58 / 36.0 元<br />
+  出发：2026-06-02 05:21 ｜ 到达：2026-06-02 07:07
+  
+</div>
+
+  <div class="route">预计交通费用：68.0 元/人</div>
+  <ul><li>高铁/动车方案未将提前到站、安检和候车时间计入行程耗时，请额外预留时间。</li></ul>
+</article>
+</div>
+</section>
+
+<section class="section">
+  <h2>酒店推荐</h2>
+  <div class="grid">
+<article class="card">
+  <img class="cover" src="https://img.alicdn.com/imgextra/i2/6000000004865/O1CN01Er8fuA1loDykKgk9R_!!6000000004865-2-hotel.png" alt="杭州灵隐丛隐小院" loading="lazy" />
+  <div class="card-body">
+    <h3>杭州灵隐丛隐小院</h3>
+    <span class="tag primary">462 元/晚</span>
+    <span class="tag green">距首日景点约 3.13 km</span>
+    <p class="meta">近天下第一财神庙</p>
+    <p>西湖风景名胜区天竺路22号</p>
+    <br /><a class="button" href="https://a.feizhu.com/2Ez1qa" target="_blank" rel="noopener noreferrer">查看预订</a>
+  </div>
+</article>
+
+<article class="card">
+  <img class="cover" src="https://img.alicdn.com/imgextra/i1/6000000002173/O1CN01tPoArR1RvHmeC2cxy_!!6000000002173-0-hotel.jpg" alt="中北•西湖酒店（杭州西湖湖滨店）" loading="lazy" />
+  <div class="card-body">
+    <h3>中北•西湖酒店（杭州西湖湖滨店）</h3>
+    <span class="tag primary">265 元/晚</span>
+    <span class="tag green">距首日景点约 5.09 km</span>
+    <p class="meta">近杭州西湖风景名胜区</p>
+    <p>浙江杭州拱墅区武林街道观巷4号</p>
+    <br /><a class="button" href="https://a.feizhu.com/3WgJ13" target="_blank" rel="noopener noreferrer">查看预订</a>
+  </div>
+</article>
+
+<article class="card">
+  <img class="cover" src="https://img.alicdn.com/imgextra/i3/6000000005834/O1CN01rfqHmr1sy1mxy6PKc_!!6000000005834-2-hotel.png" alt="澜悦酒店(滨江联庄地铁站店)" loading="lazy" />
+  <div class="card-body">
+    <h3>澜悦酒店(滨江联庄地铁站店)</h3>
+    <span class="tag primary">188 元/晚</span>
+    <span class="tag green">距首日景点约 5.18 km</span>
+    <p class="meta">近浙江中医药大学(滨文校区)</p>
+    <p>江南大道4236号知本大厦A4栋1楼大堂</p>
+    <br /><a class="button" href="https://a.feizhu.com/03Oc8J" target="_blank" rel="noopener noreferrer">查看预订</a>
+  </div>
+</article>
+</div>
+</section>
+
+<section class="section">
+  <h2>预算分析</h2>
+  <div class="list">
+    <div class="row"><strong>已计入核心费用</strong><div class="meta">2400.0 元</div></div>
+    <div class="row"><strong>预算组成</strong><div class="meta">交通（飞机）约 1080.0 元 + 酒店（杭州灵隐丛隐小院）约 462.0 元 + 已知景点门票约 858.0 元</div></div>
+    <div class="row"><strong>剩余预算</strong><div class="meta">600.0 元</div></div>
+  </div>
+  <ul><li>核心费用已接近总预算，建议保留一部分空间给餐饮、市内交通和临时消费。</li><li>以下景点标记为收费但未返回具体票价，暂未计入门票预算：雷峰塔、岳王庙、虎跑公园、三潭印月、六和塔、花港观鱼。建议出行前单独确认门票或预留额外预算。</li></ul>
+</section>
+
+<section class="section">
+  <h2>最终行程</h2>
+  <p class="meta">2天行程围绕杭州的代表性体验展开，整体节奏适中。</p>
+  <div class="timeline">
+<article class="day">
+  <h3>2026-06-01 Day 1：西湖风景名胜区、雷峰塔</h3>
+  <div class="time-block"><strong>天气</strong><ul><li>多云/多云 19~30°C</li></ul></div>
+  <div class="time-block"><strong>上午</strong><ul><li>西湖风景名胜区</li></ul></div>
+  <div class="time-block"><strong>下午</strong><ul><li>雷峰塔</li></ul></div>
+  <div class="time-block"><strong>交通参考</strong><ul><li>酒店 → 西湖风景名胜区：直线距离约2.3 km，预估市内出行约10分钟</li><li>西湖风景名胜区 → 雷峰塔：直线距离约2.8 km，预估市内出行约13分钟</li></ul></div>
+</article>
+
+<article class="day">
+  <h3>2026-06-02 Day 2：西湖游船、岳王庙</h3>
+  <div class="time-block"><strong>天气</strong><ul><li>多云/多云 21~30°C</li></ul></div>
+  <div class="time-block"><strong>上午</strong><ul><li>西湖游船</li></ul></div>
+  <div class="time-block"><strong>下午</strong><ul><li>岳王庙</li></ul></div>
+  <div class="time-block"><strong>交通参考</strong><ul><li>酒店 → 西湖游船：直线距离约3.8 km，预估市内出行约17分钟</li><li>西湖游船 → 岳王庙：直线距离约1.8 km，预估市内出行约8分钟</li></ul></div>
+</article>
+</div>
+</section>
+
+  </main>
+</body>
+</html>
